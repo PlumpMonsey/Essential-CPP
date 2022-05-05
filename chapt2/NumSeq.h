@@ -6,6 +6,7 @@ enum seq_name{
     Fibonacci, Lucas, Pell,
     Triangular, Squar, Pentagonal
 };
+
 void dispaly_msg(const std::string );
 const std::vector<int>* fibo_seq(int);
 const std::vector<int>* lucas_seq(int);

@@ -7,6 +7,7 @@ int main()
         fibo_seq, lucas_seq, pell_seq,
         triang_seq, squar_seq, pent_seq
     };
+    
     const std::vector<int>* (*seq_ptr)(int) = seq_arr[0];
     int pos;
     int elem = 0;

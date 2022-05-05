@@ -118,6 +118,7 @@ const std::vector<int>* pent_seq(int pos)
     }
     return &pent;
 }
+
 bool seq_elem(int pos, int& elem, const std::vector<int>* (*seq_ptr)(int))
 {
     if(!seq_ptr)
