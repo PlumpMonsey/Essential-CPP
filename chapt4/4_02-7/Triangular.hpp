@@ -44,7 +44,8 @@ public:
     int elem(int pos) const;
     bool next(int &val) const;
     void next_reset() const { _next = _beg_pos - 1 ;}
-
+    friend std::ostream& operator<<(std::ostream &os, const Triangular& rhs);
+    friend std::istream& operator>>(std::istream &is, Triangular& rhs);
     Triangular& copy(const Triangular&);
     static bool is_elem(int);
     static void gen_elemts(int);
@@ -105,7 +106,7 @@ Triangular::Triangular(int len, int beg)
     _next = beg - 1;
     int elem_cnt = _beg_pos + _length - 1;
     if(_elemts.size() < elem_cnt)
-        gen_elemts(elem_cnt);               // 未实现
+        gen_elemts(elem_cnt);
 }
 int Triangular::elem(int pos) const
 {
@@ -180,5 +181,22 @@ void Triangular::display(int length, int beg, std::ostream& os)
 {
     int size = beg + length - 1;
     for(int i = beg - 1; i < size; ++i)
-        os << _elemts[i];
+        os << _elemts[i]  << " ";
+}
+
+std::ostream& operator<<(std::ostream &os, const Triangular& rhs)
+{
+    os << "( " << rhs.beg_pos() << " " << rhs.length() << " )";
+    rhs.display(rhs.length(), rhs.beg_pos(), os);
+    return os;
+}
+
+std::istream& operator>>(std::istream &is, Triangular& rhs)
+{
+    int bp, len;
+    is >> bp >> len;
+    rhs._length = len;
+    rhs._beg_pos = bp;
+    rhs.next_reset();
+    return is;
 }
